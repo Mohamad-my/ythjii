@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <link rel="stylesheet" href="sheet.css">
+        <title>Reservation</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+            body {
+                margin: 12px;
+                padding: 20px;
+                background-color: white;
+                background-image: url("images/istockphoto.gif");
+                background-repeat: no-repeat;
+                background-size: cover;
+                font-family: 'Oswald', sans-serif;
+            }
+            nav ul li {
+                list-style-type: none;
+                display: inline-block;
+                margin: 9pt;
+            }
+            nav ul li a {
+                color: var(--lightColor);
+                text-decoration: none;
+                text-transform: capitalize;
+                transition: 0.4s;
+            }
+            nav ul li a:hover {
+                color: var(--bgColor-1);
+            }
+            legend {
+                padding-top: 0.5rem;
+                color: white;
+            }
+            .ticket {
+                color: white;
+            }
+            .validation-message {
+                color: red;
+                font-size: 12px;
+                margin-left: 10px;
+            }
+        </style>
+    </head>
+    <body>
+
+        <nav>
+            <h2>Travel Company 
+                <span>Reservations Without Limits</span>
+            </h2>
+            <ul>
+                <li><a href="index.html" target="_blank">Home</a></li>
+                <li><a href="support.html" target="_blank">Support</a></li>
+                <li><a href="services.html" target="_blank">Services</a></li>
+                <li><a href="#reservation" target="_blank">Reservations</a></li>
+                <li><a href="reviews.html" target="_blank">Review</a></li>
+                <li><a href="about.html" target="_blank">About</a></li>
+                <li><a href="location.html" target="_blank">Location</a></li>
+            </ul>
+        </nav>
+    
+        <div class="ticket">
+            <form id="reservationForm">
+                <fieldset>
+                    <legend>Reservation</legend><br>
+                    <div id="datetime"></div><br>
+    
+                    Enter Email:
+                    <input type="Email" id="Email" name="Email"><br>
+                    <p id="message" class="red"></p>
+    
+                    Enter Password:
+                    <input type="password" id="Password" placeholder="Password"><br>
+                    <span id="passwordError" class="validation-message"></span><br><br>
+    
+                    Going Day:
+                    <input type="date" id="d1" name="date"><br>
+                    <span id="dateError" class="validation-message"></span><br>
+    
+                    Return Day:
+                    <input type="date" id="d2" name="date"><br><br>
+    
+                    Number of Tickets:
+                    <input type="number" id="numberticket" min="1" max="10"><br>
+                    <span id="numberticketError" class="validation-message"></span><br>
+    
+                    Choose Your Destination:
+                    <select id="destination">
+                        <option value="select">Select</option>
+                        <option value="macca">Macca</option>
+                        <option value="switzerland">Switzerland</option>
+                        <option value="french">French</option>
+                        <option value="london">London</option>
+                        <option value="aqaba">Aqaba</option>
+                        <option value="sharm shakh">Sharm Shakh</option>
+                        <option value="nederlands">Nederlands</option>
+                    </select><br>
+                    <span id="destinationError" class="validation-message"></span><br>
+    
+                    Choose the Ticket Class:
+                    <select id="t5" name="Choose the ticket class">
+                        <option value="select">Select</option>
+                        <option value="First class">First Class</option>
+                        <option value="Economy class">Economy Class</option>
+                    </select><br>
+                    <span id="t5Error" class="validation-message"></span><br>
+    
+            Are you sure:
+                    <input type="checkbox" id="checkbox" name="checkbox"><br>
+                    <span id="checkboxError" class="validation-message"></span><br>
+    
+                    <textarea id="result" rows="20" cols="35" readonly></textarea><br>
+                    <button onclick="validationForm()" type="button" onmouseover="this.style.color='red'" onmouseout="this.style.color='black'">Submit</button>
+                    <button type="reset" onmouseover="this.style.color='red'" onmouseout="this.style.color='black'">Reset</button>
+                </fieldset>
+            </form>
+        </div>
+
+        <script>
+function validationForm(){
+    var Email=document.getElementById('Email').value;
+    if (!email || !email.includes('@')) {
+                document.getElementById('message').textContent = 'Invalid email address';
+                valid = false;
+            } else {
+                document.getElementById('message').textContent = '';
+            }
+
+
+
+
+}
+        </script>
+    </body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <link rel="stylesheet" href="sheet.css">
+    <title>Reviews</title>
+    <style>
+        body, h2, form, input, textarea, button {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Style for the review-form container */
+.review-form {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for the form heading */
+.review-form h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+}
+
+/* Style for the form elements */
+.review-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.review-form input[type="email"],
+.review-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.review-form textarea {
+    height: 150px;
+    resize: vertical;
+}
+
+/* Style for the submit button */
+.review-form button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007BFF;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.review-form button:hover {
+    background-color: #0056b3;
+}
+
+.review-form button:active {
+    background-color: #004494;
+}
+        
+    </style>
+</head>
+<body>
+   
+  <nav>
+    <h2>Travel Company  <span> reservations without limits </span></h2>
+    <ul>
+        <li> <a href="index.html" target="_blank"> Home </a> </li>
+        <li> <a href="support.html" target="_blank"> support </a> </li>
+        <li> <a href="Services.html" target="_blank"> services </a> </li>
+        <li> <a href="reservations.html" target="_blank"> Reservations </a> </li>
+        <li> <a href="About.html" target="_blank">About</a> </li>
+        <li><a href="location.html" target="_blank">Location </a></li>
+        <li><a href="Instant booking.html" target="_blank">Instant booking</a></li>
+    </ul>
+  </nav>
+
+  <section>
+    <div class="reviews" id="reviews">
+      <h1>Our Clients Reviews</h1>
+      <div class="wrapper">
+        <div class="box">
+          <div class="row-1">
+            <div class="img-name">
+              <img src="images/review2.jpg" />
+              <h3>Christopher Anderson</h3>
+            </div>
+            <div class="stars">
+              <!-- Star images are included here -->
+            </div>
+          </div>
+          <div class="row-2">
+            <p>"An amazing experience! The tour was well organized, and the accommodations were top-notch. Highly recommend!".</p>
+          </div>
+        </div>
+        <div class="box">
+          <div class="row-1">
+            <div class="img-name">
+              <img src="images/review1.jpg" />
+              <h3>Olivia Rodrigue</h3>
+            </div>
+            <div class="stars">
+              <!-- Star images are included here -->
+            </div>
+          </div>
+          <div class="row-2">
+            <p>"I loved the personalized attention and the great deals we got on our bookings. Will definitely use this service again!".</p>
+          </div>
+        </div>
+        <div class="box">
+          <div class="row-1">
+            <div class="img-name">
+              <img src="images/review3.jpg" />
+              <h3>William Thompson</h3>
+            </div>
+            <div class="stars">
+              <!-- Star images are included here -->
+            </div>
+          </div>
+          <div class="row-2">
+            <p>"I liked the site because it saves time and helps make reservations easily, and to thank you for the transaction".</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Review Submission Form -->
+      <div class="review-form">
+        <h2>Submit Your Review</h2>
+        <form id="reviewForm">
+          <input type="email" id="email" name="email" placeholder="Your email" required />
+          <textarea id="reviewText" name="reviewText" placeholder="Your review" required></textarea>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.getElementById('reviewForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevents the default form submission
+
+      const email = document.getElementById('email').value;
+      const reviewText = document.getElementById('reviewText').value;
+
+      // Create a new review element
+      const newReview = document.createElement('div');
+      newReview.className = 'box';
+      newReview.innerHTML = `
+        <div class="row-1">
+          <div class="img-name">
+            <img src="images/default.jpg" />
+            <h3>${email}</h3>
+          </div>
+          <div class="stars">
+            <!-- Default stars or none -->
+          </div>
+        </div>
+        <div class="row-2">
+          <p>"${reviewText}"</p>
+        </div>
+      `;
+
+      // Add the new review to the reviews section
+      document.querySelector('.reviews .wrapper').appendChild(newReview);
+
+      // Clear the form
+      document.getElementById('reviewForm').reset();
+    });
+  </script>
+</body>
+</html>

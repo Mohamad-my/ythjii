@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="sheet.css">
+    <title>Reservation</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+        body {
+            margin: 12px;
+            padding: 20px;
+            background-color: white;
+            background-image: url("images/istockphoto.gif");
+            background-repeat: no-repeat;
+            background-size: cover;
+            font-family: 'Oswald', sans-serif;
+        }
+        nav ul li {
+            list-style-type: none;
+            display: inline-block;
+            margin: 9pt;
+        }
+        nav ul li a {
+            color: var(--lightColor);
+            text-decoration: none;
+            text-transform: capitalize;
+            transition: 0.4s;
+        }
+        nav ul li a:hover {
+            color: var(--bgColor-1);
+        }
+        legend {
+            padding-top: 0.5rem;
+            color: white;
+        }
+        .ticket {
+            color: white;
+        }
+        .validation-message {
+            color: red;
+            font-size: 12px;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <h2>Travel Company</h2>
+            <span>Reservations Without Limits</span>
+        
+        <ul>
+            <li><a href="index.html" target="_blank">Home</a></li>
+            <li><a href="support.html" target="_blank">Support</a></li>
+            <li><a href="services.html" target="_blank">Services</a></li>
+            <li><a href="#reservation" target="_blank">Reservations</a></li>
+            <li><a href="reviews.html" target="_blank">Review</a></li>
+            <li><a href="about.html" target="_blank">About</a></li>
+            <li><a href="location.html" target="_blank">Location</a></li>
+        </ul>
+    </nav>
+
+    <div class="ticket">
+        <form id="reservationForm">
+            <fieldset>
+                <legend>Reservation</legend><br>
+                <div id="datetime"></div><br>
+
+                Enter Email:
+                <input type="text" id="Email" placeholder="Email">
+                <span id="EmailError" class="validation-message"></span><br><br>
+
+                Enter Password:
+                <input type="password" id="Password" placeholder="Password">
+                <span id="passwordError" class="validation-message"></span><br><br>
+
+                Going Day:
+                <input type="date" id="d1" name="date">
+                
+
+                Return Day:
+                <input type="date" id="d2" name="date">
+                <span id="dateError" class="validation-message"></span> <br><br>   
+
+                Number of Tickets:
+                <input type="number" id="numberticket" min="1" max="10">
+                <span id="numberticketError" class="validation-message"></span><br><br>
+
+                Choose Your Destination:
+                <select id="destination">
+                    <option value="select">Select</option>
+                    <option value="macca">Macca</option>
+                    <option value="switzerland">Switzerland</option>
+                    <option value="french">French</option>
+                    <option value="london">London</option>
+                    <option value="aqaba">Aqaba</option>
+                    <option value="sharm shakh">Sharm Shakh</option>
+                    <option value="nederlands">Nederlands</option>
+                </select>
+                <span id="destinationError" class="validation-message"></span><br><br>
+
+                Choose the Ticket Class:
+                <select id="t5" name="Choose the ticket class">
+                    <option value="select">Select</option>
+                    <option value="First class">First Class</option>
+                    <option value="Economy class">Economy Class</option>
+                </select>
+                <span id="t5Error" class="validation-message"></span><br><br>
+
+        Are you sure:
+                <input type="checkbox" id="checkbox" name="checkbox"><br>
+                <span id="checkboxError" class="validation-message"></span><br><br>
+
+                <textarea id="result" rows="15" cols="35" readonly></textarea><br>
+                <button type="button" onclick="information()" onmouseover="this.style.color='red'" onmouseout="this.style.color='black'">Submit</button>
+                <button type="reset" onmouseover="this.style.color='red'" onmouseout="this.style.color='black'">Reset</button>
+            </fieldset>
+        </form>
+    </div>
+
+    <script>
+        function information() {
+            var valid = true;
+
+            const email = document.getElementById('Email').value;
+            const password = document.getElementById('Password').value;
+            const date1 = document.getElementById('d1').value;
+            const date2 = document.getElementById('d2').value;
+            const numberTicket = document.getElementById('numberticket').value;
+            const destination = document.getElementById('destination').value;
+            const ticketClass = document.getElementById('t5').value;
+            const checkbox = document.getElementById('checkbox').checked;
+            
+            var ticketPrice = 0;
+
+            // Validate email
+            if (!email || !email.includes('@')) {
+                document.getElementById('EmailError').textContent = 'Invalid email address';
+                valid = false;
+            } else {
+                document.getElementById('EmailError').textContent = '';
+            }
+
+            // Validate password
+            if (!password || password.length < 6) {
+                document.getElementById('passwordError').textContent = 'Password must be at least 6 characters long';
+                valid = false;
+            } else {
+                document.getElementById('passwordError').textContent = '';
+            }
+
+            // Validate dates
+            if (!date1 || !date2 || new Date(date1) >= new Date(date2)) {
+                document.getElementById('dateError').textContent = 'Return date must be after the going date';
+                valid = false;
+            } else {
+                document.getElementById('dateError').textContent = '';
+            }
+
+            // Validate number of tickets
+            if (!numberTicket || numberTicket < 1 || numberTicket > 10) {
+                document.getElementById('numberticketError').textContent = 'Number of tickets must be between 1 and 10';
+                valid = false;
+            } else {
+                document.getElementById('numberticketError').textContent = '';
+            }
+
+            // Validate destination and calculate ticket price
+            if (destination === 'select') {
+                document.getElementById('destinationError').textContent = 'Please choose your destination';
+                valid = false;
+            } else {
+                document.getElementById('destinationError').textContent = '';
+                switch (destination.toLowerCase()) {
+                    case 'macca':
+                        ticketPrice = 210;
+                        break;
+                    case 'switzerland':
+                        ticketPrice = 300;
+                        break;
+                    case 'french':
+                        ticketPrice = 200;
+                        break;
+                    case 'london':
+                        ticketPrice = 250;
+                        break;
+                    case 'aqaba':
+                        ticketPrice = 190;
+                        break; 
+                    case 'sharm shakh':
+                        ticketPrice = 270;
+                        break;
+                    case 'nederlands':
+                        ticketPrice = 290;
+                        break;                
+                    default:
+                        ticketPrice = 80;
+                        break;
+                }
+            }
+
+            // Validate ticket class and adjust ticket price
+            if (ticketClass === 'select') {
+                document.getElementById('t5Error').textContent = 'Please select a ticket class';
+                valid = false;
+            } else {
+                document.getElementById('t5Error').textContent = '';
+                if (ticketClass === 'First class') {
+                    ticketPrice *= 2;
+                } else if (ticketClass === 'Economy class') {
+                    ticketPrice *= 1.2;
+                }
+            }
+
+            // Validate checkbox
+            if (!checkbox) {
+                document.getElementById('checkboxError').textContent = 'You must agree to the terms';
+                valid = false;
+            } else {
+                document.getElementById('checkboxError').textContent = '';
+            }
+
+if (valid) {
+const totalPrice = numberTicket * ticketPrice;
+const resultText = `
+Email: ${email}
+Going Day: ${date1}
+Return Day: ${date2}
+Number of Tickets: ${numberTicket}
+Destination: ${destination}
+Ticket Class: ${ticketClass}
+Ticket Price (each): $${ticketPrice}
+Total Price: $${totalPrice}
+Terms Agreed: ${checkbox ? 'Yes' : 'No'}`;
+
+document.getElementById('result').value = resultText.trim();
+ }
+
+ }
+
+ function updateDateTime() {
+            var dateTimeElement = document.getElementById("datetime");
+            var now = new Date();
+            var dateTimeString = "Current Date and Time: " + now.toLocaleDateString() + " " + now.toLocaleTimeString();
+            dateTimeElement.textContent = dateTimeString;
+        }
+        updateDateTime();
+        setInterval(updateDateTime, 1000);
+</script>
+</body>
+</html>
